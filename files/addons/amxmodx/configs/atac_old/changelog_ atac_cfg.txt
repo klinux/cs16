@@ -1,0 +1,59 @@
+ATAC Config Change Log
+
+1.0: 
+- Initial Release 
+
+1.1: 
+- Optimised bitwise options 
+
+1.1.01: [04/10/05] 
+- Update ATAC Config with 3 new cvar, in the process of having it save to a file. 
+- Current ATAC Config Will not save after map change, This will be the next update i will do. 
+
+1.1.02 [04/15/2005] 
+- Rearrange Menu to add option Save into the menu. 
+- Hit Exit option will not save the change settings that you have change. 
+- Changing Options mid map when using in-game menu will not save setting unless you hit the option save. 
+- When saving it will only overwrite the line that need to be change. 
+- You need to update to the current version of atac.cfg or You will have problem when saving setting in the in-game menu 
+- Added the new cvar option ATAC_LOG 
+- change say /atacmenu to atac_menu in console 
+- change ADMIN_MENU to ADMIN_CFG 
+- Spanish Translations Done By Faluco 
+- Dutch Translations Done By Devilion 
+
+1.1.03 [04/20/2005] 
+- Polish Translation Done By KWo 
+- Added cvar for Gamespy/HLSW 
+
+1.1.04 [04/26/2005] 
+- Fix Multi-Lingual Support with the help of Faluco 
+- Fix some errors in the ataccfg.txt language file. 
+- Re-Done French Translations by L@Br3Y\ 
+
+1.1.05 [05/03/2005] 
+- Added New Option for Death Match plugins that I can not set to read the current state of the Death Match. 
+- Added ML for MENU_CFG_SAVE_MSG = *[ATAC] settings has been saved. 
+- Added MENU_CFG_DM = Death Match 
+- Change client console command atac_menu to amx_atacmenu. Because atac_menu is also a cvar and on listen server 
+it would interfer with each other. 
+
+1.1.06 [05/06/2005] 
+- Fix the Display of Slay Next Spawn when one of the DM are enable. 
+- Added Translations for Save msg in polish in ataccfg.txt 
+
+1.1.07 [07/10/2006]
+[LIST]
+[*]Changed Author, Plugin, Version to 'new const'
+[*]Added PCvar variables pv_*
+[*]Registered Atac PCvars with get_cvar_pointer()
+[*]Replaced all atac internal get_cvar/set_cvar with get_pcvar/set_pcvar ( get_cvar_num("atac_tacontrol") to get_pcvar_num(pv_atac_tacontrol) )
+[*]Replaced all format() with formatex()[/LIST]
+
+Ver 1.1.08 [07/10/2006] 
+[LIST]
+[*]Version bump
+[*]Fixed a formatex() using %g instead of %f for the float variable atac_slap_amount[/LIST]  
+
+Ver 1.1.09 [8/2/06]
+Bug Fix Release Sorry No Changelog Info 
