@@ -38,6 +38,12 @@ ADD files/addons/ /opt/hlds/cstrike/addons/
 # Install sounds
 ADD files/sound/ /opt/hlds/cstrike/sound/
 
+# Install models
+ADD files/models/ /opt/hlds/cstrike/models/
+
+# Install sounds
+ADD files/sprites/ /opt/hlds/cstrike/sprites/
+
 # Install metamod
 #RUN mkdir -p /opt/hlds/cstrike/addons/metamod/dlls
 #RUN curl -sqL "http://prdownloads.sourceforge.net/metamod/metamod-$metamod_version-linux.tar.gz?download" | tar -C /opt/hlds/cstrike/addons/metamod/dlls -zxvf -
