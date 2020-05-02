@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/JimTouz/counter-strike-docker.svg?branch=master)](https://travis-ci.org/JimTouz/counter-strike-docker)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/JimTouz/counter-strike-docker/blob/master/LICENSE)
 
 # Docker image for Counter Strike 1.6 Dedicated Server
@@ -51,10 +50,11 @@ docker rm cs
 
 # Attributions
 
-This project is based on [counter-strike-docker](https://github.com/artem-panchenko/counter-strike-docker), developed by [Artem Panchenko](https://github.com/artem-panchenko).
+This project is based on [counter-strike-docker](https://github.com/artem-panchenko/counter-strike-docker), developed by [Artem Panchenko](https://github.com/artem-panchenko) and [jimtouz/counter-strike-docker](https://github.com/jimtouz/counter-strike-docker)
 
-## Changes from original project
+## Changes from original projects
 
 * Changed the name of the build.
 * Added new maps.
 * Added new parameters in run script.
+* Added podbot and statsme

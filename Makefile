@@ -1,6 +1,6 @@
 
 # Build options
-IMAGE_NAME?="klinux/cs16"
+IMAGE_NAME?="klinux/server"
 IMAGE_TAG?="latest"
 
 STEAM_USER?="anonymous"
@@ -9,7 +9,7 @@ STEAM_PASSWORD?=""
 DOCKER_NO_CACHE?="false"
 
 # Publish options
-DOCKER_PUBLISH_NAME?="cs16ds/server"
+DOCKER_PUBLISH_NAME?="klinux/cs16-server"
 DOCKER_PUBLISH_TAG?=$(IMAGE_TAG)
 
 # Test tools
