@@ -1,0 +1,680 @@
+<html>
+<head>
+<title>How to do Waypoints for POD-Bot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000CC" vlink="#000066" text="#000000">
+<div align="center">
+  <p><img src="GFX/fade1.jpg" width="549" height="226" name="POD_Logo"> 
+  </p>
+  <table width="75%" border="0">
+    <tr> 
+      <td> 
+        <div align="center"> 
+          <p><i>* Parts of this Text were directly taken and tweaked from Botman's 
+            explanations *<br>
+            (Lazyness took me again and Botman is better than me in explaining 
+            things)</i></p>
+          <hr>
+          <p align="left"><b>* V1.2 Waypoint Makers please read:</b> </p>
+          </div>
+        <p align="left">If you previously did some waypoints for POD-Bot you will 
+          notice some<br>
+          differences. First, you are now allowed to have connections between<br>
+          8 Waypoints at the same time (was 4 before). Also the Wayzone Radius<br>
+          gets calculated instantly now when placing a waypoint (makes &quot;<b>wayzone<br>
+          calcall</b>&quot; somewhat obsolete). And even more important you should 
+          now do<br>
+          lots of waypoints since the Bots will try to to vary them. Also try 
+          to<br>
+          place waypoints at Places where you would like them to take cover (see<br>
+          below for a more lengthy explanation).</p>
+        <hr>
+        <p align="left">First, before starting to do waypoints because you desperately 
+          need them for a custom map you want to play you better check here if 
+          they weren't already done by someone else:<br>
+          <a href="http://www.nuclearbox.com/podbot/downloads.shtml">http://www.nuclearbox.com/podbot/downloads.shtml</a></p>
+        <p align="left"><br>
+          <b>1. Waypoints, what are they ?</b></p>
+        <p align="left">Waypoints are locations in the maps that the bots will 
+          use when navigating.<br>
+          They allow the bot to roam about the map without having to blindly bump 
+          into<br>
+          walls. Waypoints can be thought of like the bread crumbs in the Hansel 
+          and<br>
+          Gretel story. They are something marking a path to make it easier to 
+          follow.<br>
+          The waypoints are not displayed while the game is being played. The 
+          bots<br>
+          &quot;know&quot; which way to go by following the path laid out by these 
+          waypoints.</p>
+        <p align="left">In order to get the bots to cover the entire map when 
+          playing the game,<br>
+          waypoints should be laid out all over the map. Without the waypoints 
+          the<br>
+          bots will just randomly run around and will tend to stay in the same 
+          area.<br>
+          Waypoints also allow the bot to know where specific goals are in the 
+          game.<br>
+          You couldn't play capture the flag unless you knew where the flag was 
+          and<br>
+          where the flag needed to be taken after being captured. Waypoints are 
+          what<br>
+          makes all of these things possible. Bots with sufficiently advanced 
+          waypoint<br>
+          information and algorithms would be able to find the shortest distance<br>
+          between points in the map and navigate from their current position to 
+          some<br>
+          goal on the other side of the map.</p>
+        <p align="left">This document describes the commands needed to create 
+          or edit a waypoint<br>
+          file (to be used with POD-Bot). When creating or editing a waypoint<br>
+          file it is best <b>NOT</b> to have any bots wandering around at the 
+          same time.<br>
+          Create a LAN game, and join the game then start laying out waypoints 
+          for<br>
+          a map. Save the waypoint file, disconnect from the server, then start 
+          the<br>
+          game again, this time with the bots to see how well (or poorly) they 
+          follow<br>
+          the waypoints you have created.</p>
+        <p align="left"><br>
+          <b>2. What do waypoints look like in the map ?</b></p>
+        <p align="left">The waypoints are displayed using vertical lines that 
+          look like lightning or<br>
+          electric streams. The vertical line used to draw the waypoint is the 
+          same<br>
+          height as the player. The point in space at the center of this vertical 
+          line<br>
+          is what is actually used as the waypoint. Different Types of waypoints 
+          have<br>
+          different colors. </p>
+        <p align="left">Waypoints are stored in a file with the same name as the 
+          map file name but<br>
+          using the extension &quot;<b>.pwf</b>&quot; instead of the map file 
+          extension of &quot;<b>.bsp</b>&quot;. For<br>
+          example, the waypoint file for the map de_dust would be de_dust.pwf.It 
+          will be<br>
+          stored in the Half-Life\cstrike\PODBot folder and then in the folder 
+          you specified<br>
+          with wptfolder (defaults to &quot;<b>WPTDefault</b>&quot;).<br>
+          Waypoint files are automatically loaded when the map is loaded (if they<br>
+          exist). If the waypoint file does not exist, you will need to create 
+          it<br>
+          using the directions contained in this document.</p>
+        <p align="left"><br>
+          <b>3. Waypoint console commands Summary</b></p>
+        <p align="left">The following Waypoint commands are available (note these 
+          ARE case sensitive):</p>
+        <p align="left">&quot;<b>waypoint on</b>&quot; - Turns on displaying of 
+          waypoints.<br>
+          &quot;<b>waypoint on noclip</b>&quot; - Turns on waypoint editing with 
+          noclip cheat. This allows you<br>
+          to fly and you don't collide with walls. Useful for doing swim waypoints.<br>
+          &quot;<b>waypoint off</b>&quot; - Turns off displaying of all waypoints.<br>
+          &quot;<b>waypoint add</b>&quot; - Adds a waypoint at the current player 
+          location. A Menu will pop<br>
+          up where you have to select the different types of waypoints<br>
+          &quot;<b>waypoint delete</b>&quot; - Deletes the waypoint nearest to 
+          the player (see below).<br>
+          <b>&quot;waypoint find x&quot;</b> - Shows you the Direction to a specific 
+          Waypoint Nr. x<br>
+          &quot;<b>waypoint showflags</b>&quot; - Shows all of the Flags which 
+          are set manually on this waypoint<br>
+          &quot;<b>waypoint addflag</b>&quot; - Allows you to manually add Flags 
+          to a waypoint. <br>
+          &quot;<b>waypoint delflag</b>&quot; - Let's you select a waypoint flag 
+          to delete<br>
+          &quot;<b>waypoint setradius x</b>&quot; - Manually sets the Wayzone 
+          Radius for this waypoint to<br>
+          Value x <br>
+          &quot;<b>waypoint stats</b>&quot; - Shows the number of different waypoints 
+          you did already set.<br>
+          &quot;<b>waypoint check</b>&quot; - Checks if all Waypoints are valid 
+          (automatically done when saving them too)<br>
+          &quot;<b>wayzone calcall</b>&quot; - Calculates the Wayzone Radius for 
+          all Waypoints in the Map. (obsolete now since V1.3 because wayzones 
+          are automatically set when a waypoint is created)<br>
+          &quot;<b>waypoint save</b>&quot; - Saves the current waypoint list to 
+          a file (with Waypoint &amp; Path Checking)<br>
+          &quot;<b>waypoint save nocheck</b>&quot; - Same as above but forcing 
+          tosave even if they are full of errors..<br>
+          &quot;<b>waypoint load</b>&quot; - Loads the waypoint list from a waypoint 
+          file (and initialises all Datas).<br>
+          <br>
+          &quot;<b>autowaypoint</b>&quot; - Displays the status of the autowaypoint 
+          setting.<br>
+          &quot;<b>autowaypoint on</b>&quot; - Turns on autowaypoint setting.<br>
+          &quot;<b>autowaypoint off</b>&quot; - Turns off autowaypoint setting.</p>
+        <p align="left">&quot;<b>pathwaypoint</b>&quot; - Displays the status 
+          of the pathwaypoint setting.<br>
+          &quot;<b>pathwaypoint on</b>&quot; - Turns on the pathwaypoint setting 
+          (see below).<br>
+          &quot;<b>pathwaypoint off</b>&quot; - Turns off the pathwaypoint setting.<br>
+          &quot;<b>pathwaypoint add x</b>&quot; - Connects the nearest Waypoint 
+          to you, with the<br>
+          waypoint whose number specified with Value x.<br>
+          &quot;<b>pathwaypoint delete x</b>&quot; - Disconnects the nearest Waypoint 
+          to you, with the<br>
+          waypoint whose number specified with Value x.<br>
+        </p>
+        <p align="left"><b>&quot;debuggoal x</b>&quot; - Forces Bots to use Waypoint 
+          Nr. x as a Destination Waypoint </p>
+        <p align="left"><br>
+          To use the waypoint commands, you will have to use the console. You 
+          must<br>
+          start the game with the console option enabled (use &quot;<b>hl.exe 
+          -console</b>&quot; in<br>
+          the Target: line of a shortcut or use &quot;Half-Life Console&quot; 
+          in your SIERRA<br>
+          menu from the Windows Start button). Use the '~' key to bring down the<br>
+          console. Enter the console commands that you wish, then use the '~' 
+          key<br>
+          again to return to the game.</p>
+        <p align="left">You can make things easier by binding console commands 
+          to keys on the<br>
+          keyboard. Just type &quot;bind&quot; followed by the key you want to 
+          bind to,<br>
+          followed by the console command. You will have to use double quotes<br>
+          on the console command if it's more than one word. Here's an example<br>
+          of console commands that I use when editing waypoints...</p>
+        <p align="left"><b>bind a &quot;waypoint add&quot;</b><br>
+          <b>bind d &quot;waypoint delete&quot;</b><br>
+          <b>bind l &quot;waypoint load&quot;</b><br>
+          <b>bind w &quot;waypoint save&quot;</b></p>
+        <p align="left">The 'a' key will manually add a waypoint. The 'd' key 
+          will delete a waypoint.<br>
+          The 'l' key will load the most recently saved waypoint file (useful 
+          if you<br>
+          have added some waypoints but don't want to save them and want to go 
+          back to<br>
+          the previously save waypoint list, sort of like an &quot;undo&quot;). 
+          The 'w' key (for<br>
+          &quot;write waypoints&quot;) will save the list of waypoints to the 
+          waypoint file. I<br>
+          tried using 's' (for &quot;save waypoints&quot;), but I kept hitting 
+          's' by mistake when<br>
+          I wanted to add or delete a waypoint.</p>
+        <p align="left">Using &quot;<b>waypoint add</b>&quot; will place a waypoint 
+          at the location that the player is<br>
+          currently at in a map. Waypoints can be placed anywhere the player can 
+          go.<br>
+          When placing a waypoint, you will hear a sound to indicate that the 
+          waypoint has been dropped (the sound is the same sound the crossbow 
+          bolt makes when striking an wall).<br>
+          You then have to specify the Type of waypoint you want to place here.</p>
+        <p align="left">&quot;<b>Normal Waypoint</b>&quot; sets a Waypoint which 
+          is used for normal walking from one<br>
+          point to each other. From V1.4 on you should place lots of them (but 
+          still caring for some distance between them), since the<br>
+          Bots use them for hiding and varying their paths. Color is green.</p>
+        <p align="center"><img src="GFX/normal.JPG" width="320" height="240" name="NormalWaypoint"><br>
+          <b>A Standard Normal Waypoint</b></p>
+        <p align="left">&quot;<b>Terrorist Important Waypoint</b>&quot; and &quot;<b>Counter 
+          Important Waypoint</b>&quot;<br>
+          These are strategical waypoints for that team. Bots use these waypoints<br>
+          to patrol the map. How they use this, heavily depends on the map type.<br>
+          In a DE Map you should place a lot of Counter Waypoints around the<br>
+          Bomb Plant Zone and only 2 or 3 strategical waypoints for Terrorists.<br>
+          On a DE Map Counter Bots will most of the time pick a Counter Waypoint 
+          as<br>
+          a destination and only sometimes pick a Terrorist waypoint. Terrorists<br>
+          are allowed to pick any of them as a goal waypoint. This behaviour changes<br>
+          with the maptype, in a CS map for example it is vice versa.<br>
+          It helps to think of the important waypoints like strategical positions 
+          in a sports game. Imagine the team which defends the Map Goal is the 
+          'Home Team' and the other one is the 'Away Team'. Now you need to have 
+          more important waypoints for the Home Team, because the Away Team will 
+          go for them anyway. On a DE Map the CT Team is the Home Team, on a CS 
+          &amp; AS Map the Terrorist Team is the Home Team. The average number 
+          of 'Home Team' Important Waypoints should be about twice as much as 
+          the the important waypoints for the 'Away Team'. Terrorists WP Color 
+          is red, Counter Waypoints<br>
+          are blue. </p>
+        <p align="center"><img src="GFX/timportant.JPG" width="320" height="240"></p>
+        <p align="center"><b>A Terrorist Important Waypoint</b></p>
+        <p align="center"><img src="GFX/ctimportant.JPG" width="320" height="240" name="CTWaypoint"></p>
+        <p align="center"><b>A Counter-Terrorist Important Waypoint</b></p>
+        <p align="left"> &quot;<b>Ladder Waypoint</b>&quot;<br>
+          These need to be placed on a ladder if you want the Bots to climb it.<br>
+          Set the bottom waypoint at a position where you're already &quot;stuck&quot; 
+          to the<br>
+          ladder. At the top of the ladder you should place another ladder waypoint.<br>
+          Set this at a position where you can hardly look ever the edge. If the 
+          ladder<br>
+          is quite a long one, you might want to place another ladder waypoint 
+          in<br>
+          between the other ones. In most cases you need to connect the waypoints<br>
+          manually by using pathwaypoint (see below). If there is no connection<br>
+          between the waypoints the Bots won't climb the ladder ! Color is purple.</p>
+        <p align="center"><img src="GFX/ladder.JPG" width="320" height="240"><br>
+          <b>A ladder waypoint<br>
+          </b> </p>
+        <p align="left">&quot;<b>Rescue Waypoint</b>&quot;<br>
+          This is only needed on Hostage Maps. It's the location where you want<br>
+          the CT Bots to rescue the hostages. Usually only 1 is needed (depending 
+          on how much Rescue Zones there are it might be more).. Color is white.</p>
+        <p align="center"><img src="GFX/rescue.JPG" width="320" height="240"><br>
+          <b>A Rescue Waypoin</b>t</p>
+        <p align="left">&quot;<b>Goal Waypoint</b>&quot;<br>
+          Place this at a position where Goals of the Map need to be achieved. 
+          In DE<br>
+          maps this is a bomb plant spot and on cs maps Counter look here to rescue<br>
+          some hostages. In AS maps these are the Escape points for the VIP. Color 
+          is<br>
+          purple like ladder waypoints.</p>
+        <p align="center"><img src="GFX/goal.JPG" width="320" height="240"><br>
+          <b>A Goal Waypoin</b>t</p>
+        <p align="left">&quot;<b>Campstart Waypoint</b>&quot;<br>
+          This is a camping (or sniper if you prefer) waypoint. To place it, look 
+          into<br>
+          the direction you want the Bot to start looking at when camping. To 
+          let him<br>
+          crouch at that position just press the duck button while adding it. 
+          You also<br>
+          need to specify the:<br>
+          &quot;<b>Campend Waypoint</b>&quot;<br>
+          Selecting this will set the end direction for the Bot to look at when 
+          camping.<br>
+          Look straight into the direction where you want the Bot to look and 
+          select it.<br>
+          Note: you can't set a campend waypoint before doing a campstart waypoint.<br>
+          Normal Color is cyan, if you made it team specific it will have a touch 
+          of red<br>
+          if Terrorist WPT or blue if CT.</p>
+        <p align="center"><img src="GFX/camp.JPG" width="320" height="240" name="CampWaypoint"><br>
+          <b>A Camp Waypoint where the Bot will duck while<br>
+          camping</b></p>
+        <p><b>&quot;Jump Waypoint&quot;<br>
+          </b>This is the very first of the upcoming learning Features in POD 
+          (I'm planning on extending this a lot). By selecting it, your moves 
+          will be monitored and if you jump, a normal waypoint will be placed 
+          at the position you started to jump and another will be placed where 
+          you landed. The Waypoint Type as said before is a standard waypoint 
+          but a red connection line will show you that there is a jump connection 
+          between the two. You can also create jump connections between already 
+          existing waypoints, just make sure you're in the near of the first when 
+          jumping and land in the near of the destination waypoint. Note that 
+          this will adjust the waypoints origin on the average position of the 
+          previous position and your jump position. You can even have the Bots 
+          jump to a ladder or do several jumps after each other !</p>
+        <p align="center"><img src="GFX/jump.JPG" width="320" height="240"><br>
+          <b>Waypoints connected with a Jump Connection</b></p>
+        <p>&nbsp; </p>
+        <p align="left"><b>*NOTE*</b><br>
+          To set a <b>crouch waypoint</b>, just keep holding your duck key. You 
+          certainly<br>
+          noticed, I don't have different paths for different teams. I removed 
+          team<br>
+          specific paths, since the Bots should be free (IMHO) to walk everywhere 
+          and<br>
+          I secretly hated to to do waypoints for every team.<br>
+          <br>
+          Using &quot;<b>waypoint delete</b>&quot; will remove the waypoint closest 
+          to the player. The<br>
+          waypoint MUST be within 40 units from the player (about 1/2 the player 
+          height)<br>
+          in order to be removed. You will need to stand fairly close to the waypoint<br>
+          to be able to remove it. This prevents you from accidentally removing 
+          a<br>
+          waypoint on the other side of the room. When removing a waypoint you 
+          will<br>
+          hear a sound indicating that the waypoint was removed (the same sound 
+          the<br>
+          tripmine makes when placed on a wall).</p>
+        <p align="left">&quot;<b>waypoint addflag/deleteflag</b>&quot; gives you 
+          some additional options for waypoints.<br>
+          The first, &quot;<b>blockwithhostage</b>&quot; is rarely used. If you 
+          set this flag on a<br>
+          waypoint Bots won't take this waypoint if a hostage is following them.<br>
+          With the other two, you can make a campwaypoint team-specific.</p>
+        <p align="left">Using &quot;<b>waypoint save</b>&quot; will save the waypoint 
+          data to the waypoint file. Before saving (if you didn't add the 'nocheck' 
+          argument, the Waypoints and Paths will be checked for major mistakes 
+          and if something is wrong you'll be told so and nothing will be saved. 
+          During the checking time CS freezes and depending on the speed of your 
+          computer it could easily last for a minute. Don't worry your computer 
+          hasn't crashed ! <br>
+          Waypoint files will have the same name as the current map with an extension<br>
+          of &quot;.pwf&quot;. The file will be saved into the &quot;cstrike/PODBot&quot; 
+          Folder. Your<br>
+          current player name will be saved as the waypoint file creator.</p>
+        <p align="left">Using &quot;<b>waypoint load</b>&quot; will clear out 
+          all waypoints in the current map and<br>
+          load them from the waypoint file in the maps folder. This is a good 
+          way<br>
+          to &quot;undo&quot; a bunch of waypoints that you have created but do 
+          not wish to<br>
+          save. There is no way to &quot;undo&quot; a single waypoint. You will 
+          have to use<br>
+          the &quot;<b>waypoint delete</b>&quot; command to remove waypoints one-by-one.</p>
+        <p align="left"><br>
+          The &quot;<b>autowaypoint</b>&quot; command allows you to automatically 
+          drop waypoints as<br>
+          you run around in a map. To turn autowaypointing on use &quot;<b>autowaypoint 
+          on</b>&quot;.<br>
+          As you run around the level waypoints will be dropped every 200 units<br>
+          automatically. No waypoint will be dropped if another waypoint is already<br>
+          within 200 units of your current position. So if you want to place lots<br>
+          of waypoints fairly close together you may have to manually place some 
+          of<br>
+          the waypoints using the &quot;<b>waypoint add</b>&quot; command. Autowaypointing 
+          keeps<br>
+          track of where the last waypoint was dropped (either manually or from<br>
+          autowaypointing) and will place another waypoint when you are 200 units<br>
+          from the last waypoint. If you don't like where autowaypointing placed<br>
+          a waypoint and want to move it a little bit, you can delete the waypoint<br>
+          using &quot;waypoint delete&quot; (but turn off autowaypointing before, 
+          since it<br>
+          will place a new waypoint otherwise). </p>
+        <p align="left">When using autowaypointing, try to stay in the center 
+          of narrow hallways<br>
+          and always place a waypoint on BOTH sides of a door. You may have to 
+          place<br>
+          some of these waypoints manually using &quot;<b>waypoint add</b>&quot; 
+          since places like<br>
+          intersections of hallways and doorway entrances and exits don't usually<br>
+          fall exactly at the location where autowaypoint would want to place 
+          a<br>
+          waypoint.<br>
+          <b>Don't use autowaypointing for locations like ladders or jumps !</b></p>
+        <p align="left">&nbsp;</p>
+        <p align="left">The &quot;<b>pathwaypoint</b>&quot; command allows you 
+          to display what the bots would consider<br>
+          to be a valid path from one waypoint to other waypoints. Turn pathwaypoint<br>
+          on using &quot;<b>pathwaypoint on</b>&quot; and whenever you get close 
+          to a waypoint<br>
+          yellow or white lines will be drawn to all of the other waypoints that 
+          the bot<br>
+          would consider to be &quot;reachable&quot;. If the connection is a two-way 
+          connection the<br>
+          line is yellow, one-way connections appear white. These &quot;reachable&quot; 
+          waypoints<br>
+          would be waypoints that are clearly visible from the current location. 
+          Certain<br>
+          waypoints will be disallowed as reachable for one reason or another. 
+          For<br>
+          example, waypoints suspended in mid-air above the bot would not be considered<br>
+          reachable since the bot couldn't jump high enough to get to them. Also<br>
+          waypoints that are too far away from the current location would not 
+          be<br>
+          considered reachable. You may have waypoints that are close enough to 
+          each<br>
+          other, but across a wide gap that would be too wide to jump. If the 
+          far<br>
+          waypoint is close enough and clearly visible, it would still show as<br>
+          &quot;reachable&quot; since I currently don't have a method to determine 
+          if the bot<br>
+          can get to that waypoint or not.</p>
+        <p align="left">The bots will <b>ONLY</b> move from one waypoint to another 
+          if there is a path between<br>
+          them. Get in the habit of turning on the pathwaypoint setting when creating<br>
+          waypoint files so that you can see the waypoint paths and will know 
+          whether<br>
+          or not a path exists between two waypoints. Also get in the habit of 
+          checking<br>
+          that paths exist <b>BOTH WAYS</b> between waypoints. Just because a 
+          path is drawn<br>
+          from point A to point B, doesn't mean that a path exists from point 
+          B to<br>
+          point A.</p>
+        <p align="left">The &quot;<b>pathwaypoint add &lt;waypointnr&gt;</b>&quot; 
+          command allows you to<br>
+          manually assign a path between 2 waypoints. This is needed in some cases<br>
+          where the waypoints are blocked (by doorways or other objects) and you 
+          wish<br>
+          to create a path between these waypoints. Also ladder waypoints need 
+          to be<br>
+          manually connected most of the time. Move close to the waypoint you<br>
+          wish the path to start from and use the &quot;<b>pathwaypoint add x</b>&quot; 
+          command.<br>
+          Of course the &quot;x&quot; must be replaced by a valid waypoint number. 
+          The actual<br>
+          Waypoint Number you're standing on, will be shown in the upper corner 
+          of your<br>
+          HUD (if you turned pathwaypoint on).<br>
+          For example to manually assign a path between Waypoint Nr. 250 and 251,<br>
+          you first should stand in the near of Waypoint Nr. 250. Then type in:<br>
+          &quot;pathwaypoint add 251&quot; and it will get connected. <br>
+          You should now see a white waypoint path<br>
+          line being draw from the start waypoint to the end waypoint. Note that 
+          this<br>
+          is a <b>ONE-WAY</b> connection. If you wish to create a path back in 
+          the other<br>
+          direction you will have to start with the second waypoint and end the 
+          path<br>
+          back at the first waypoint.</p>
+        <p align="center"><img src="GFX/1way.JPG" width="320" height="240"></p>
+        <p align="center"><b>A 1-Way Connection</b></p>
+        <p align="center"><img src="GFX/2way.JPG" width="320" height="240"></p>
+        <p align="center"><b>A 2-Way Connection</b></p>
+        <p align="left">The &quot;<b>pathwaypoint delete x</b>&quot; command is 
+          just like<br>
+          the &quot;add&quot; command except that it removes a path (connection) 
+          from the<br>
+          starting point to the ending point. This is necessary in some cases 
+          where<br>
+          you may have a door that opens from one side and allows you to go through<br>
+          but once the door closes you can't go back through the other way.</p>
+        <p align="left">When adding waypoints use the pathwaypoint feature to 
+          verify that waypoints<br>
+          are actually reachable. Sometimes you add a waypoint and it appears 
+          close<br>
+          enough and it also appears to be in plain sight, but the Half-Life engine<br>
+          doesn't indicate that the waypoint is &quot;reachable&quot;. <br>
+          Be sure to check this in <b>BOTH</b> directions when defining a waypoint 
+          path.<br>
+          Usually you don't have to be too careful about waypoint<br>
+          placement, but in some situations, you may have to spend more time carefully<br>
+          laying out waypoints to get them to be &quot;reachable&quot; (ladders 
+          are a good<br>
+          example).</p>
+        <p align="left">To set crouch waypoints, simply crouch when adding the 
+          waypoint. You will<br>
+          notice that the waypoint line is shorter than a normal waypoint. Bot 
+          will<br>
+          crouch automatically when approaching a crouch waypoint (if it's not 
+          a<br>
+          camping waypoint).</p>
+        <p align="left">Try placing waypoints at intersections in hallways (do 
+          use some <br>
+          &quot;important&quot; waypoints at crossings). Try not to place waypoints 
+          in<br>
+          places where the bots would bump into corners of walls or other obstacles<br>
+          when trying to get from one waypoint to the next. Remember the bots 
+          won't<br>
+          always take what you consider to be the &quot;obvious&quot; choice when 
+          choosing the<br>
+          next waypoint. Try to limit the choices that they have to keep them 
+          from<br>
+          heading off in the wrong direction. Also remember that the Bots could 
+          go<br>
+          backward in a fight and might not find a waypoint. In that special case<br>
+          they wouldn't find a near enough waypoint (they only search in-between<br>
+          200 Units) and get stuck forever. Since V1.4 it's important to have 
+          a lot<br>
+          of waypoints together to allow the Bots a wider choice. Also put some<br>
+          waypoints in corners or behind walls/doors so they can take good cover<br>
+          positions. The Bots will try to take cover at waypoints</p>
+        <div align="left">
+          <ul>
+            <li><b>not seen by the enemy and</b></li>
+            <li><b> the one with the smallest wayzone radius in their range</b> 
+            </li>
+          </ul>
+        </div>
+        <p align="left"><b>4. What are the Wayzones ?</b></p>
+        <p align="left">Bots will pick a point inside this radius for their destination 
+          origin (based<br>
+          on things like orientation etc.), this just makes movement not that 
+          &quot;static&quot;.<br>
+          Ladder waypoints, camp waypoints and goal waypoints will always have 
+          a radius<br>
+          of 0. Don't try to change it ! After POD-Bot calculated all Zones you 
+          should<br>
+          walk all over your waypoints to verify that they are reachable within 
+          their<br>
+          radius. Try to be careful with the radius. If your path bends around 
+          corners<br>
+          it's better to lower the radius. You should set the radius to 0 if the 
+          Path<br>
+          goes through some narrow doorways or similar. You manually assign a 
+          new value<br>
+          by standing near to the waypoint and typing &quot;<b>waypoint setradius 
+          x</b>&quot;. Where x<br>
+          is the value you want to assign. Valid ranges are 0-128. The bigger, 
+          the wider<br>
+          it is. You'll also notice, if you turned on pathwaypointing some lines 
+          will<br>
+          show you the radius of the actual waypoint (if it's not 0).</p>
+        <hr>
+        <p align="left"><i>Some Tips &amp; Tricks when creating waypoints:</i><br>
+          I start by typing &quot;<b>waypoint on</b>&quot;. After that I type 
+          &quot;<b>autowaypoint on</b>&quot; and<br>
+          &quot;<b>pathwaypoint on</b>&quot;. Then I try to cover the map with 
+          waypoints everywhere<br>
+          I want the Bots to roam (except for ladder waypoints) and manually adjust 
+          wayzone radii which aren't appropriate . After this I try to think of 
+          the important points for each team. I move to that position, delete 
+          the &quot;normal&quot; waypoint and instead set a strategical waypoint 
+          at that position. Then I place the goal waypoints, rescue waypoints 
+          (if needed) and ladder waypoints. Then I do a lot of test playing and 
+          checking with 'debuggoal' until I'm finally satisfied with all of the 
+          movement.<br>
+          When saving and there are errors, the waypoint number with the error 
+          will be shown to you. Use 'waypoint find x' where x is the number of 
+          the waypoint you want to find. Green Beams will then show you the direction 
+          to the waypoint <b>if you previously turned on pathwaypoints</b>. Type 
+          'waypoint find -1' to turn it off. Another useful command for testing 
+          waypoints is the debuggoal command. If you want to check out if Bots 
+          will make it through a difficult route, save the waypoints, then load 
+          them again and type debuggoal x, where x is again the number of the 
+          waypoint. you want the Bot to reach. After that add 1 Bot to your team 
+          and watch him move to that waypoint. Be sure to turn it off again for 
+          real playing because otherwise all of the Bots would take this waypoint 
+          as a goal.<br>
+          There's no waypoint for shooting breakables. The Bots will automatically 
+          shoot them if it's blocking their way, just make sure that the path 
+          connection goes right through the breakable. There's also no button 
+          waypoint. If a Bot sees a Button he will randomly try to press it. If 
+          you want to make sure that the Bot uses the Button you could do tricky 
+          waypoint connections leading towards the button.</p>
+        <p align="left">&nbsp;</p>
+        <h3 align="left">Some common newbie mistakes:</h3>
+        <h4 align="left">Picture 1 - Placing unnecessary waypoints</h4>
+        <h4 align="left"><img src="GFX/mistake1.JPG" width="320" height="240"></h4>
+        <p>The waypoint in the middle of the window was probably set with the 
+          intention to help the Bot with navigating through it. However it results 
+          in the opposite. If the Bots have a clear Line of Sight to another waypoint 
+          they assume there won't be any obstacle in the way. It would be better 
+          to delete the waypoint in the window and just connect the waypoint in 
+          front of the window with the one behind it.</p>
+        <h4>Picture 2 - not fitting Wayzones</h4>
+        <h4><br>
+          <img src="GFX/mistake2.JPG" width="320" height="240"></h4>
+        <p>Look at that biiig wayzone assigned to this waypoint. If a Bot tries 
+          to walk over this foot-bridge he will almost 100% fall down into death 
+          because he would think even the free space beside it is walkable. For 
+          precise movement a wayzone radius of 0 should be assigned instead.</p>
+        <h4>Picture 3 - No connections between Waypoints, bad ladder waypoints</h4>
+        <h4><img src="GFX/mistake3.JPG" width="320" height="240"></h4>
+        <p>First, the connection from the normal waypoint isn't the best. It is 
+          better to have the angle of approach set in a more straight angle. But 
+          the really bad error is that there's probably no connection from the 
+          ladder waypoint to the normal waypoint above. Let's take a look down 
+          from the upper waypoint:<br>
+          <img src="GFX/mistake3_1.JPG" width="320" height="240"></p>
+        <p>Yes. It's even worse. There's a one-way connection from the upper waypoint 
+          to the ladder waypoint (at an angle where the Bot won't use the ladder 
+          resulting in broken legs), there's no connection from the ladder waypoint 
+          to the top and worst of all would be the only Path Bots could take to 
+          reach this position. Playing with such waypoints would result in Bots 
+          circling around a single waypoint just because the waypointer forgot 
+          about connecting them. Simply manually connecting the ladder waypoint 
+          with the top waypoint would get rid of the problem.</p>
+        <h4>Picture 4 - Wrong Placement of Important Waypoints</h4>
+        <h4><img src="GFX/mistake4.JPG" width="320" height="240"></h4>
+        <p>Now look at this. Isn't it funny how peacefully the Terrorist Important 
+          Waypoint, the CT Important Waypoint and the Normal Waypoint co-exist 
+          at the same place ? <b>NO, it's not!<br>
+          </b>This map - cs_galleon - is a hostage map where the Terrorist Team 
+          starts on the ship and the Counter-Terrorists Team spawn somewhere else 
+          outside the ship. Having both of the Important Points at the same place 
+          screws up all tactical reasoning the Bots do and will just result in 
+          Deathmatch Gameplay (if there even will be gameplay then). So the CT 
+          Important Waypoint should be deleted and be recreated at the CT Spawn 
+          Area or in the near of it. In addition the CT Waypoint and the normal 
+          waypoint are much to close together. More about this below...<br>
+        </p>
+        <h4>Picture 5 - Bad approach angles for Ladder Waypoints</h4>
+        <h4><img src="GFX/mistake5.JPG" width="320" height="240"></h4>
+        <p>The normal waypoint in the front is connected with the ladder waypoint 
+          in the background at an angle that the Bots will almost everytime run 
+          either into the back of the ladder or collide with the side of it. To 
+          make it even worse the normal waypoint on the right is also connected 
+          with the ladder waypoint (you can't see it on the picture) so the Bots 
+          will get stuck everytime they want to use the ladder (they don't know 
+          how to manoever around backsides of ladders).. Luckily there is a button 
+          at the left of the picture so if the Bot heads off to press it, there's 
+          a chance he will approach the ladder from a better side. The problem 
+          could easily be solved by deleting the connection from the waypoint 
+          on the right side to the ladder and by moving the front waypoint a short 
+          distance to the left.</p>
+        <h4>Picture 6 - Waypoints too close together</h4>
+        <h4><img src="GFX/mistake6.JPG" width="320" height="240"></h4>
+        <p>Besides that two waypoints at this close distance are absolutely unnecessary, 
+          it will slow down the Bot (because of the higher amount of waypoints) 
+          and furthermore will do no good to the Bots Navigation and Collision 
+          Avoidance. I'll try to explain:</p>
+        <p>The Bots have a hardcoded radius inside my DLL where the Bot thinks 
+          he reached this precious waypoints. It differs between types of waypoints, 
+          to stay at the example picture normal waypoints are considered to be 
+          reached when the Bot is inside a radius of 50 Units from the center 
+          of the waypoint. To see what I mean with 50 Units you could set a waypoint 
+          to a 50 Unit Wayzone by typing 'wayzone setradius 50'. Now in the example 
+          picture the distance between the 2 waypoints is way below it, at a rough 
+          guess I would say 16 Units. So what ? If the Bot reaches Waypoint Nr. 
+          1, he automatically thinks (in the same frame) he has reached Waypoint 
+          Nr. 2 without any movement which obviously is bad for precise movement. 
+          Furthermore I'm post-processing the paths of the Bots so when 2 Bots 
+          have the same waypoint as a goal I try to find alternative waypoints. 
+          So if a colliding Bot #1 wants to reach Waypoint Nr. 1, Waypoint Nr. 
+          2 will be a assigned to Bot #2 which leads to the Bots getting stuck 
+          in each other very often. Avoid something like this at all costs!</p>
+        <h4>Picture 7 - No Waypoints at all !</h4>
+        <h4><br>
+          <img src="GFX/mistake7.JPG" width="320" height="240"></h4>
+        <p>I can imagine looking at this scenario that the waypointer thought 
+          something like this: &quot;Oh well, these Bots are waypointed and I 
+          don't want them to move here so I just don't set waypoints here and 
+          everything's fine&quot;. <b>This is wrong! </b>It's true that POD-Bot 
+          uses waypoints for basic movement so the Bots normally should never 
+          reach this position in their normal navigation. But it's totally different 
+          when engaged in combat ! If a Bot is attacking/fleeing an enemy he doesn't 
+          use waypoints but uses an unwaypointed navigation like Realbot for example. 
+          So it could easily be the case that a Bot is engaged at a position where 
+          waypoints are available, moves backwards while fighting the enemy, finally 
+          kills his enemy and stands at the position where I took the screenshot. 
+          Now the Bot wants to switch back to waypointed movement but can't find 
+          a waypoint in the near distance and is stuck forever again. So a basic 
+          rule would be to place waypoints even in areas where you doubt a Bot 
+          will ever move to, you never know what could happen in combat! </p>
+        <hr>
+        <p align="left"> Phew ! I hope I didn't miss anything. Remember: the better 
+          the waypoint file,<br>
+          the more fun it is to play with the Bots ! If they are stuck somewhere 
+          on<br>
+          a map, it's usually the fault of the waypoint file creator...</p>
+        <p align="left">If you've got questions not answered here, please use 
+          the waypoint forum at nuclearbox:<br>
+          <a href="http://www.nuclearbox.com/ubb/cgi-bin/ultimatebb.cgi?ubb=forum&amp;f=5">http://www.nuclearbox.com/ubb/cgi-bin/ultimatebb.cgi?ubb=forum&f=5</a> 
+        </p>
+        <p align="left"><i><b>Happy Waypointing !</b></i></p>
+      </td>
+    </tr>
+  </table>
+  <p>&nbsp; </p>
+</div>
+</body>
+</html>

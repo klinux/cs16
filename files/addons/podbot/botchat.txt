@@ -1,19 +1,19 @@
 # All Bot Chat Messages are stored here
+# All comments start with a "#" char
+# You can write as much comments as you like, but
+# please avoid using tabs, whitespaces and blank lines
+# (they will be parsed out but you never know!)
+# Also be sure that a Line doesn't exceed 80 chars
+# (including carriage return)
 #
-# Any line begining with '#' in the first column is a comment line
-# No line should pass 79 Characters!(equivilent to this alphabetical line)
-#
-#abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz
-#
-# Messages for each Type of Chat begin with a marker enclosed in []
-#
+# Messages for each Type of Chat begin with a marker
+# enclosed in []
 # Marker Types:
-#
 # [BOMBPLANT] Holds the Messages for the Counter Terrorists
-#	        if a Bomb got planted
+#	      if a Bomb got planted
 # [KILLED]    Bots say this Message if they killed somebody
 # [DEADCHAT]  Bots say these Lines if they are dead and in
-#	        Spectator Mode
+#	      Spectator Mode
 #
 # %f = Name of Player with the most frags
 # %m = Mapname
@@ -22,8 +22,10 @@
 # %t = Name of Teammate alive
 # %v = Last Victim of this Bot
 #
+#
+#
 # Counter Messages for Bomb planted:
-# Minimum Number is 1!
+# Minimum Number is 1
 #
 [BOMBPLANT]
 HEY!!! They're tryin to kill Kenny! Those bastards!!!!
@@ -32,6 +34,10 @@ we got %r left to figure what they want to bomb!!
 FIDEL CASTRO DID IT! no....WAIT SADDAM DID IT!! no....wait...
 sssshhhhh... %t, did you hear that beeping noise? was that your watch?
 ...Aaaaaaaaaaaa I DON'T WANN DIE....im famous and yer not %t.
+#
+#
+#
+#
 #
 #
 # Messages after killing somebody:
@@ -61,8 +67,13 @@ are you talking to me %v??
 %v, what are you laying around for??? hehe
 #
 #
+#
+#
+#
+#
+#
 # Chat Messages when dead and bored
-# Minimum Number is 9!
+# !!Minimum Number is 9!!
 #
 [DEADCHAT]
 Stop playing Dead....we see that you do that well now get up.
@@ -136,8 +147,9 @@ I'm really good at this, its not special effects !
 I'm tired, lets leave %t !!
 I smoke a lot when i have to wait, why do famous actors have to wait?
 WTF, ....??
-#
-#
+
+
+
 # Start of the "dynamic" replies from here
 # After each @KEY Tag you need to specify the
 # keywords in quotation marks and uppercase. You can
@@ -145,8 +157,7 @@ WTF, ....??
 # After the keywords line, the answers or messages to this
 # special keyword need to be given. In theory there can be an unlimited
 # number of answers of course you should care about the used memory ;)    
-#
-#
+
 [REPLIES]
 @KEY "WHO'S ON FIRST"
 Whats on Second?, %s
@@ -221,6 +232,7 @@ And I think you should sit back down and play!
 Plz give me your ICQ Number %s
 I think you're retarded
 I believe you're retarded
+
 
 @KEY "WU-TANG", "METALLICA", "DREAM THEATER", "HIP-HOP", "MUSIC", "SLAYER"
 Umm...I don't care as long as it's not commercial 

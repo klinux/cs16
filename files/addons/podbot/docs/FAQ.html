@@ -1,0 +1,355 @@
+<html>
+<head>
+<title>POD-Bot FAQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000CC" vlink="#000066" text="#000000">
+<div align="center"> 
+  <h1>F.A.Q.</h1>
+  (Frequently Asked Questions) 
+  <div align="left">
+    <p>* Last update: 18.8.2001 </p>
+    <p> <i>Why does nobody read the readme.txt or this FAQ ?<br>
+      </i><i> </i> I really don't know. Most questions I receive via e-mail are 
+      already answered either in the readme or in this FAQ :)</p>
+    <p> <i> Why is it called &quot;POD-Bot&quot; ?</i><br>
+      POD is an abbreviation for &quot;<b>Ping of Death</b>&quot;. I called it 
+      that way because it was derived from the &quot;High Ping Bastard Bot&quot; 
+      <b>Botman</b> is doing. And if youlook at the Bots Ping they always have 
+      a Ping of 5 and the very first Generation of Bots did Headshots all the 
+      time, so you know why, huh ?<br>
+      <br>
+      <i>Who is this Botman Guy everbody seems to mention ?</i><br>
+      Botman was the very first who implemented a Method to hook every existing 
+      Halflife MOD DLL. Since you don't usually<br>
+      have the original Sources of e.a. Counterstrike, DLL Hooking is the only 
+      way to write extensions (Bots) for it. He also was so<br>
+      kind to put his Sources on his Webpage, so that everybody could see how 
+      it is done and was able to do Bot Programming.<br>
+      Please visit his Website at: <a href="http://www.planethalflife.com/botman/">http://www.planethalflife.com/botman/</a> 
+      and also try his HPB-Bot which supports several MODs.<br>
+      Botman is in no way affiliated with POD-Bot or me so if you have any questions 
+      concerning POD mail me instead of him.</p>
+    <p><i> Who is the POD-Bot Team ?</i><br>
+      There isn't any Team. I (<a href="mailto:countfloyd@botepidemic.com">Count 
+      Floyd</a>) am responsible for all the Bot Coding &amp; Design.<br>
+      Two friendly people at <a href="http://www.nuclearbox.com/">nuclearbox.com</a> 
+      (<a href="mailto:auxois@nuclearbox.com">Auxois</a> and <a href="mailto:smok3@nuclearbox.com">Smok3</a>) 
+      are doing all the Web Stuff for me there.<br>
+      Then there are the pages at <a href="http://www.botepidemic.com/">botepidemic.com</a> 
+      which were done by <a href="mailto:runabout@crosswinds.net">runab0ut</a> 
+      and hosted by <a href="mailto:ze0@botepidemic.com">ze0</a>. If you've got 
+      questions or suggestions about the POD Internet pages please mail them instead 
+      of me. Furthermore there are a lot of nice supportive<br>
+      people like <b>Bluesman</b> (moderator at the forum), <b>TAZ</b> (great 
+      waypointer, good moderator),<br>
+      <b>Bot_Guy</b> (beta-testing &amp; waypointing), <b>Chris</b> (beta-testing), 
+      <b>Fairus</b> (did invest some time doing a Community Site) and<br>
+      <b>Kangaroo</b> (always supportive &amp; helpful, 1st person ever who posted 
+      in my forum, will never forget that!) to name just a few.<br>
+      I know there are a lot more I should mention here, just blame my short-term 
+      memory. </p>
+    <p> <i>Why did you write this Bot ?</i><br>
+      When I started coding, there only was <b>Android Bot by DaTa</b>. I really 
+      liked Android, but at that time you could only play<br>
+      DE_DUST with it and I got bored with it. Then I found out that it was based 
+      on Botman's Ideas and code and thought I<br>
+      could do that as well. So instead of waiting for updates, I took my trusty 
+      VC++ and did a Bot on my own.<br>
+      Besides, I never did a lot of AI programming before nor pathfinding and 
+      we all have to learn the whole life, haven't we ?<br>
+      <br>
+      <i>Does this Bot support MODs other than CounterStrike ?</i><br>
+      No, this Bot was coded especially for <b>CounterStrike</b>. If you want 
+      to play for example <b>TFC</b> with a Bot, you have<br>
+      to install <b>HPB-Bot by Botman</b> which supports several MODs in one. 
+      I don't plan to extend my Bot to others since I'm<br>
+      only interested in CS. Maybe I will do modificated Versions of it for other 
+      MODs, but only if I finished all modes for CS<br>
+      and I find the time and interest to do it.<br>
+      <br>
+      <i>Why should I use this Bot and not &lt;insert-your-favourite-bot&gt; ?</i><br>
+      Well, because at the moment of writing I think this one is the most playable 
+      and human acting Bot for Counterstrike.<br>
+      Yes, it uses predefined waypoints but show me a Non-Human Opponent in any 
+      newer Game. which doesn't<br>
+      (Unreal &amp; Quake3 for example also use a mixture of waypoints and terrain 
+      analyzing) If you don't like it, feel free<br>
+      to try the others. Even if you do, compare it with the others to have your 
+      own judgement.<br>
+      <br>
+      <i>Will I be able to play CounterStrike on the Internet or on a LAN with 
+      the POD-Bot installed?</i><br>
+      YES! You can join a network game over the Internet or on a LAN without having 
+      to uninstall the Bot. You cannot<br>
+      spawn bots when connected to an Internet server, but you can spawn bots 
+      on a LAN if you are running the server.<br>
+      If you're hosting a Server you can even spawn Bots in the Internet.</p>
+    <p> <i>Why do I get &quot;Unknown Command&quot; if I type &quot;addbot&quot; 
+      in the Console ?</i><br>
+      You must have overwritten the &quot;liblist.gam&quot; File in the cstrike 
+      Folder. If this happens for example by installing a <br>
+      Counterstrike Update the liblist.gam will point to the original Counterstrike 
+      DLL and the Bots DLL won't get called.<br>
+      Search for the Line <b>gamedll &quot;dlls\mp.dll&quot;</b> in <b>liblist.gam</b> 
+      and replace it with <b>gamedll &quot;PODBot\podbot.dll&quot;</b> to<br>
+      re-install it. Another reason could be that you unzipped the Archive into 
+      the wrong Folder.<br>
+      <b>NOTE:</b> You have to unzip it into the Halflife Main Folder <b>NOT</b> 
+      the cstrike one !</p>
+    <p> <i>I downloaded some custom waypoints and POD doesn't seem to find them. 
+      What's wrong ?</i><br>
+      You unzipped them into the wrong directory or you're using a wpt file which 
+      is too old for your current POD version.<br>
+      If you're using <b>POD 1.2 or older</b> the default folder to unpack the 
+      files is the <b>main PODBot Directory</b>.<br>
+      If you're using <b>V1.4-V1.4x</b> the default folder for wpts is &quot;<b>PODBot/WPTCS10</b>&quot;.<br>
+      Now since <b>POD V2.0</b> the default waypoint folder is called (<i>Surprise,Surprise!</i>)<br>
+      &quot;<b>PODBot/WPTDefault</b>&quot;.<br>
+    </p>
+    <p><i>How do I edit the Config Files you're talking of ?</i><br>
+      Just open it with a simple texteditor, for example Windows Notepad will 
+      do. </p>
+    <p> <i>Is it possible to remove the [POD] and the skill in the botnames ?</i><br>
+      Yes, there are 2 different methods to get rid of them. The easiest one is 
+      to edit your<b> podbot.cfg</b> file located in the podbot<br>
+      folder. Just change the line '<b>detailnames on</b>' to '<b>detailnames 
+      off</b>'. The second would be to specify a name when manually<br>
+      typing <b>addbot</b>.</p>
+    <p> <i>I can't get the POD-Bot Menu to work, can I bind it to another key 
+      ?<br>
+      I was playing counter-strike, and I hit the minus key several times, shrinking 
+      my screen size. I can't get it bigger<br>
+      again because the +/= key is bound to the POD-Bot Menu.</i><br>
+      Certainly. Take a look into the <i>podbot.cfg</i> and edit the line<br>
+      '<b>bind &quot;=&quot; &quot;podbotmenu</b>&quot;' to any key you like. 
+    </p>
+    <p> <i>My bots fly and seems to have the legs spread in the air, is it a bug 
+      in POD-Bot ?</i><br>
+      LOL! No, it's not. Make sure you always have the latest <b>HL Update</b> 
+      installed.<br>
+      For example CS 1.0 <b>needs</b> at least the HL Update 1.1.0.4 and CS 1.1 
+      <b>won't work properly</b> if you haven't got <br>
+      the 1.1.0.6 Update. If you're sure you've installed the latest patch and 
+      you're still experiencing this<br>
+      problem, also make sure that you didn't install <b>custom player models</b>.</p>
+    <p> <i>Why do the Bots get stuck in each other or in the map ?</i><br>
+      First and foremost the Bots do navigate the map by the use of waypoints. 
+      These waypoints are somehow like<br>
+      dropped 'beacons' which help the Bots to orientate themselves. If the waypointer 
+      did a bad job when placing them,<br>
+      it will result in a crappy movement. So make sure your waypoints files are 
+      new &amp; of good quality to have a good<br>
+      judgement about the Bots movement. If you're not satisfied with the current 
+      waypoints you can edit them yourself.<br>
+      Just read the '<a href="waypointshowtodo.html">waypointshowtodo.html</a>' 
+      in your main podbot folder.<br>
+      <br>
+      <i>Do Admin Mod and POD-Bot work together ?</i><br>
+      Yes. I heard there might be problems with newer versions of Admin-MOD but 
+      I know for sure that running POD with older<br>
+      versions did work without flaws. If you still can't get it to work please 
+      mail Alfred, the Author of Admin MOD<br>
+      instead of me. </p>
+    <p><i> Can I use different Bots with CounterStrike ?</i><br>
+      Not at the same time but you can easily switch between them by changing 
+      the gamedll in 'liblist.gam'. If you don't have a<br>
+      clue what I'm talking about use a BotLauncher which does it for you e.g. 
+      Multi-Bot Launcher.<br>
+      <br>
+      <i>When will you be releasing the next version of the POD Bot?</i><br>
+      If I believe there are enough Features added, so that a new Release is satisfying 
+      enough<br>
+      (usually a month or two is enough to add some funky things, but development 
+      cycles are slowing down).<br>
+      Please don't keep pushing me in e-mails, I will delete them... !</p>
+    <p> <i>When are you going to provide &lt;insert_your_favorite_feature_here&gt; 
+      into the POD Bot?</i><br>
+      I'm adding features to the Bot, which I am most interested in. Over the 
+      time I want to have all Game Goals and<br>
+      useful stuff implemented. Just be patient and wait for the next release 
+      !</p>
+    <p> <i>Does POD-Bot run on Linux ?</i><br>
+      No, not yet. There needs to be a separate version especially compiled &amp; 
+      modified for the Linux OS for which I sadly<br>
+      didn't have time to do so yet.<br>
+      <br>
+      <i>Will there ever be a Linux Version of POD ?</i><br>
+      Yes. However since I'm promising this for quite some time now, I won't tell 
+      dates anymore. Just wait and see...</p>
+    <p> <i>How do I write my own Bot ? What do I need for this ?</i><br>
+      First, you need a good understanding of C/C++. It would help a lot if you 
+      did a MOD before or read the Halflife SDK.<br>
+      A good place to start writing a Halflife Bot is Botmans Webpage (see the 
+      URL in the 2nd Question).<br>
+      Before you ask: No, there isn't any Webpage or Source I know of, which especially 
+      has Sources on CounterStrike Bots<br>
+      or how to code one.<br>
+      UPDATE:<br>
+      <b>Elite</b>, Coder of the <b>CS Teambot</b> gives away his sources here:<br>
+      <a href="http://www.planethalflife.com/teambot/">http://www.planethalflife.com/teambot/</a><br>
+      <b>CS-Bot</b> &amp; its sources by <b>Eric Bieschke</b> can be found here:<br>
+      <a href="http://gamershomepage.com/csbot/">http://gamershomepage.com/csbot/</a> 
+      <br>
+    </p>
+    <p> <i>Would you help me in developing my own Bot ?</i><br>
+      It depends. If I see you really know programming by heart, then I will surely 
+      exchange ideas. If you just want to<br>
+      change minor things in the original <b>HPB Bot</b>, then <b>NO!</b><br>
+      <br>
+      <i>Are your Sources available for download ? Will you open your sources 
+      to the public in future times ?</i><br>
+      I don't feel like releasing my sources now, because of it's poorly commented, 
+      weak style and I think a lot of people<br>
+      would only try to rip off parts from it. I will surely release it when I 
+      feel it's in a finished state and I'm not interested in<br>
+      adding things to it. Until then please be patient and use for example Botman's 
+      templates to do your own Bot. </p>
+    <p><i> When will my favourite map be supported ?</i><br>
+      I currently only did waypoints for my favourite maps and all of them are 
+      official standard maps. Since V1.1 you're free<br>
+      to use the built-in waypoint editor to support your favourite maps.<br>
+      <br>
+      <i>Where can I get this Waypoint Editor to make my own waypoints ? Please 
+      tell me the URL !</i><br>
+      You already have it if you installed POD. Type '<b>waypoint on</b>' to check 
+      it out if you don't believe me ;)<br>
+      If you're serious about waypointing, then please read '<a href="waypointshowto.html">waypointshowto.html</a>'<br>
+      <br>
+      <i>What are your favourite CounterStrike Bots besides your own ?</i><br>
+      At the time of writing, there are already a few others I like to play with. 
+      I admire &quot;<b>Android</b>&quot; by DaTa for using<br>
+      wayzones to achieve a great movement. I played a lot of time with <b>NNBot</b> 
+      by Daniel Ditlew which uses Neural<br>
+      Networks to train the Bots (a thing which I fear I would have never managed 
+      to implement). And finally there is<br>
+      <b>Realbot</b> by Stefan Hendriks which has a big community since it doesn't 
+      use waypoints of any sort and navigates<br>
+      from one entity to another. Ah yes, and then there's <b>Rambot</b> by Paulo-La-Fritte 
+      which was released very early<br>
+      and had some advanced features, but it has been a bit quiet in development 
+      these days. All of these have their own<br>
+      &quot;look and feel&quot; and make good Bots for playing. Not to mention 
+      <b>SwatBot, BobaBot, Knifebot</b> (I certainly missed some)<br>
+      there are numerous other CS Bots if you don't like these. If you ask me 
+      again, at the moment I play with NNBot most<br>
+      of the time and can't wait for a new version of HPB-Bot to be released, 
+      which shocks me with great new<br>
+      features everytime...<br>
+      <i><br>
+      Would you like me to send some suggestions to you ?</i><br>
+      Please...<b>no...don't !</b> I would prefer if you would use the <a href="http://www.nuclearbox.com/ubb/cgi-bin/ultimatebb.cgi?ubb=forum&amp;f=15">Forum</a> 
+      for that (also for reporting Bugs!) since I get a ton<br>
+      of e-mails every day and I can't keep up with answering all of them. I visit 
+      the Forum on a regular basis and there might<br>
+      be some other guys who already posted that suggestion/bug.<br>
+      <br>
+      <i>Can I help you in some way (betatesting/hosting/gfx) ?</i><br>
+      No, thank you. A Bot is best coded by a single person, I'm already hosted 
+      by some friendly people and the best<br>
+      beta-tester is still me. If you want to help you could review waypoints 
+      for POD or you could do some additional Botchat<br>
+      Files in your language. There's nothing else I could think of.<br>
+      <br>
+      <i>Why does your Bot use waypoints ? I want to play some unsupported maps 
+      without doing waypoint files.</i><br>
+      I knew you would ask. Simply because I don't believe in a Bot who is doing 
+      great without any kind of navigational help.<br>
+      Show me only one First Person Shooter where the Computer AI doesn't use 
+      either waypoints, wayzones or pre-defined<br>
+      areas. I'm pretty sure you won't find any. The reason for this again is 
+      simple. It would just take too much CPU Power to<br>
+      realtime calculate all Geometry inside a map. Imagine a Bot either shooting 
+      some dozens of TraceLines through the part<br>
+      of the map he's seeing or sorting all entity coordinates he encounters. 
+      Doesn't matter what he actually does, it's just way<br>
+      too slow for the current state of CPU technology. You would end up with 
+      a Bot which is either pretty good/humanlike at movement but stupid as hell, 
+      vice versa or both. Since my computer is a slow PII-300 I can't even be 
+      bothered to try...<br>
+      I don't tell this to discourage Bot authors attempting this. Just prove 
+      me wrong and keep trying !</p>
+    <p><i>I've downloaded some custom waypoints. Where do I put them ? I always 
+      get a message like 'No Waypoints for this Map' !</i><br>
+      If you didn't change the folder for waypoints with the 'wptfolder' command, 
+      the default directory to install waypoints is 'cstrike/podbot/wptdefault'.</p>
+    <p><i>I'm unable to do good waypoints for POD. Also I'm unsure about several 
+      explanations in your<br>
+      waypointshowtodo.html. What can I do ? Should I e-mail you my questions 
+      or should I send you my buggy<br>
+      waypoint file ?</i><br>
+      <b>No !</b> For heavens sake don't do that ! If you don't know how to waypoint 
+      or have some questions about it, please visit<br>
+      the <a href="http://www.nuclearbox.com/ubb/cgi-bin/ultimatebb.cgi?ubb=forum&amp;f=5">waypoint 
+      forum</a> at nuclearbox. There are a lot of experienced people willing to 
+      help you and posting your questions<br>
+      to the forum might help other newbies, too.<br>
+      <br>
+      <i>I did Waypoints for a map which isn't officially supported by POD-Bot 
+      yet. May I send it to you to include it<br>
+      with later versions ?</i><br>
+      I don't have an overview of already released waypoint files by other people 
+      than me. Best is to send them to TAZ or<br>
+      Auxois, who try to collect and maintain all waypoints.<br>
+      <a href="mailto:podbot@nuclearbox.com">podbot@nuclearbox.com</a><br>
+      <a href="mailto:auxois@nuclearbox.com">auxois@nuclearbox.com</a> <br>
+      <br>
+      <i>Where can I download additional waypoints for custom maps ?</i><br>
+      On the POD Download Page you can download more than 300 additional Waypoint 
+      Files made by other Users<br>
+      just for you. I don't know the quality of these waypoints though, so please 
+      direct all complains to the original authors.<br>
+      URL: <a href="http://www.nuclearbox.com/podbot/downloads.shtml">http://www.nuclearbox.com/podbot/downloads.shtml</a><br>
+      <br>
+      <i>Why aren't there any waypoint packs to download ?</i><br>
+      Just because I don't know which custom waypoints are good enough to collect 
+      together in a pack and I'm too lazy<br>
+      to review them all (like everybody else it seems)..<br>
+      <br>
+      <i>How do I play alone in my team against a team of Bots ?</i><br>
+      It's easily done by using the <b>in-build User Menu</b>. Press the key for 
+      displaying the Menu (defaults to the &quot;=&quot; key). Then<br>
+      select &quot;<b>Fill Server with Bots</b>&quot; and after that choose the 
+      team you want the Bots to be. </p>
+    <p> <i>I did a translation of the botchat.txt into my own language. Do you 
+      want me to send it to you ?</i><br>
+      If it's a 100% translation of the original text, it's not already included, 
+      it's a widely spread language (no local dialects<br>
+      please!) and you made sure it's working with POD then yes, I'd be glad to 
+      receive it.<br>
+      <br>
+      <i>Will POD run on a dedicated Server ?</i><br>
+      Yes, the most important commands are also supported when starting a dedicated 
+      Server. Most people think that<br>
+      POD doesn't support it because they didn't get the big difference between 
+      the normal console commands and the<br>
+      ones for DS. When running a DS you need to have the word &quot;<b>bot</b>&quot; 
+      before the actual command. For example to add a<br>
+      Bot in non DS Mode you just type &quot;addbot&quot;. When running a DS you 
+      need to type &quot;<b>bot addbot</b>&quot;. Please take a look into<br>
+      the readme.html for a summary of all DS commands. </p>
+    <p> <i>I did write you a long e-mail and you didn't answer me back </i>!<br>
+      Please be patient ! I really try to answer everyone but I currently have 
+      problems keeping up with all the mails I got.<br>
+      Also, if you're writing from gmx.net I'm unable to reply, because they seem 
+      to block most mails coming from yahoo. <br>
+      If one week has passed without any answer then I must have missed your mail 
+      or it just got lost on its way. Also I<br>
+      usually reply much faster in the <a href="http://www.nuclearbox.com/ubb/cgi-bin/ultimatebb.cgi?ubb=forum&amp;f=15">forum</a>...<br>
+      <br>
+      <br>
+      If you have questions not answered in this FAQ you can visit the Forum:<br>
+      <a href="http://www.nuclearbox.com/ubb/cgi-bin/ultimatebb.cgi?ubb=forum&amp;f=15">http://www.nuclearbox.com/ubb/cgi-bin/ultimatebb.cgi?ubb=forum&f=15</a><br>
+      If you think you can't live without e-mailing me try this one -&gt; <a href="mailto:podbot@yahoo.com">podbot@yahoo.com</a></p>
+    <p>(please don't mail me suggestions or your personal wishlist, use the Forum 
+      instead !<br>
+      <b>AND DON'T ASK ME FOR RELEASE DATES OF FUTURE VERSIONS, SUCH E-MAILS WILL 
+      BE<br>
+      DELETED AT ONCE!</b></p>
+    <p> There's even a POD-Bot IRC Channel now on irc.gamesnet.net, Port 6667.<br>
+      Sometimes I can be found chatting in the <i>#podbot</i> channel too.</p>
+  </div>
+</div>
+</body>
+</html>
