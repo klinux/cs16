@@ -52,9 +52,9 @@ ADD files/liblist.gam /opt/hlds/cstrike/liblist.gam
 ADD files/plugins.ini /opt/hlds/cstrike/addons/metamod/plugins.ini
 
 # Install dproto
-#RUN mkdir -p /opt/hlds/cstrike/addons/dproto
-#ADD files/dproto_i386.so /opt/hlds/cstrike/addons/dproto/dproto_i386.so
-#ADD files/dproto.cfg /opt/hlds/cstrike/dproto.cfg
+RUN mkdir -p /opt/hlds/cstrike/addons/dproto
+ADD files/dproto_i386.so /opt/hlds/cstrike/addons/dproto/dproto_i386.so
+ADD files/dproto.cfg /opt/hlds/cstrike/dproto.cfg
 
 # Install AMX mod X
 #RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-base-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
