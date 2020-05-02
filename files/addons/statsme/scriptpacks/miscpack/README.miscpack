@@ -1,0 +1,22 @@
+as of Statsme 2.7 many scripts have been moved out of the main
+distro, and converted into 'scriptpacks' or statsme addons.
+
+
+This script pack should be uncompressed into your
+addons/statsme/scriptpacks directory, and the following lines should
+be added to your scriptpacks.cfg in addons/statsme You do not have to
+use all the scripts in this scriptpack, feel free to pick-and-choose.
+
+
+exec addons/statsme/scriptpacks/miscpack/autorr.cfg
+exec addons/statsme/scriptpacks/miscpack/awplimit.cfg
+exec addons/statsme/scriptpacks/miscpack/damage.cfg
+exec addons/statsme/scriptpacks/miscpack/greet.cfg
+exec addons/statsme/scriptpacks/miscpack/snapshot.cfg
+exec addons/statsme/scriptpacks/miscpack/timeinfo.cfg
+exec addons/statsme/scriptpacks/miscpack/tmlf.cfg
+exec addons/statsme/scriptpacks/miscpack/vip.cfg
+
+
+BE SURE TO EDIT THESE FILES! THERE ARE CHANGES YOU NEED TO MAKE
+SPECIFICALLY FOR *YOUR* SYSTEM!
