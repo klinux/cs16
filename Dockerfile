@@ -56,7 +56,7 @@ ADD files/addons/ /opt/hlds/cstrike/addons/
 ADD files/sound/ /opt/hlds/cstrike/sound/
 
 # Cleanup
-RUN apt remove -y curl
+RUN apt-get remove -y curl
 
 WORKDIR /opt/hlds
 
