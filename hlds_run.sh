@@ -24,7 +24,7 @@ BUY_TIME="${BUY_TIME:-0.25}"
 FRIENDLY_FIRE="${FRIENDLY_FIRE:-1}"
 POD_BOT="mm_gamedll addons/podbot/podbot_mm_i386.so"
 
-OPTIONS=( "-game" "${GAME}" "+maxplayers" "${MAXPLAYERS}" "+map" "${START_MAP}" "+hostname" "\"${SERVER_NAME}\"" "+mp_startmoney" "${START_MONEY}" "+mp_friendlyfire" "${FRIENDLY_FIRE}" "+mp_buytime" "${BUY_TIME}" "+localinfo" "${POD_BOT}")
+OPTIONS=( "-game" "${GAME}" "+maxplayers" "${MAXPLAYERS}" "+map" "${START_MAP}" "+hostname" "\"${SERVER_NAME}\"" "+mp_startmoney" "${START_MONEY}" "+mp_friendlyfire" "${FRIENDLY_FIRE}" "+mp_buytime" "${BUY_TIME}" "+localinfo" ${POD_BOT})
 
 if [ -z "${RESTART_ON_FAIL}" ]; then
     OPTIONS+=('-norestart')
