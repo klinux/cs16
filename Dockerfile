@@ -38,15 +38,9 @@ ADD files/addons/ /opt/hlds/cstrike/addons/
 # Install sounds
 ADD files/sound/ /opt/hlds/cstrike/sound/
 
-# Install models
-ADD files/models/ /opt/hlds/cstrike/models/
-
-# Install sounds
-ADD files/sprites/ /opt/hlds/cstrike/sprites/
-
 # Install metamod
-#RUN mkdir -p /opt/hlds/cstrike/addons/metamod/dlls
-#RUN curl -sqL "http://prdownloads.sourceforge.net/metamod/metamod-$metamod_version-linux.tar.gz?download" | tar -C /opt/hlds/cstrike/addons/metamod/dlls -zxvf -
+RUN mkdir -p /opt/hlds/cstrike/addons/metamod/dlls
+RUN curl -sqL "http://prdownloads.sourceforge.net/metamod/metamod-$metamod_version-linux.tar.gz?download" | tar -C /opt/hlds/cstrike/addons/metamod/dlls -zxvf -
 ADD files/liblist.gam /opt/hlds/cstrike/liblist.gam
 # Remove this line if you aren't going to install/use amxmodx and dproto
 ADD files/plugins.ini /opt/hlds/cstrike/addons/metamod/plugins.ini
@@ -57,8 +51,8 @@ ADD files/dproto_i386.so /opt/hlds/cstrike/addons/dproto/dproto_i386.so
 ADD files/dproto.cfg /opt/hlds/cstrike/dproto.cfg
 
 # Install AMX mod X
-#RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-base-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
-#RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-cstrike-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
+RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-base-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
+RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-cstrike-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
 ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
 
 # Cleanup
