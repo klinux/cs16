@@ -58,4 +58,4 @@ This project is based on [counter-strike-docker](https://github.com/artem-panche
 * Added new maps.
 * Added new parameters in run script.
 * Added podbot and amx plugin ultimate_sounds
-* Fixing the bug of update 90, add  a extra line to **updte 90** without error, and creating a layer wiht download.
+* Fixing the bug of update 90, add  a extra line to **updte 90** without error, and creating a layer with download.
