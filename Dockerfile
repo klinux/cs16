@@ -53,7 +53,10 @@ ADD files/dproto.cfg /opt/hlds/cstrike/dproto.cfg
 # Install AMX mod X
 RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-base-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
 RUN curl -sqL "http://www.amxmodx.org/release/amxmodx-$amxmod_version-cstrike-linux.tar.gz" | tar -C /opt/hlds/cstrike/ -zxvf -
-ADD files/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
+ADD files/amxmodx/maps.ini /opt/hlds/cstrike/addons/amxmodx/configs/maps.ini
+ADD files/amxmodx/plugins.ini /opt/hlds/cstrike/addons/amxmodx/configs/plugins.ini
+ADD files/amxmodx/ultimate_sounds.amxx /opt/hlds/cstrike/addons/amxmodx/plugins/ultimate_sounds.amxx
+ADD files/amxmodx/ultimate_sounds.sma /opt/hlds/cstrike/addons/amxmodx/scripting/ultimate_sounds.sma
 
 # Cleanup
 RUN apt-get remove -y curl
